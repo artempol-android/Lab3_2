@@ -17,8 +17,8 @@ class ActivitySecond : AppCompatActivity() {
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.toFirstButton.setOnClickListener { toFirstActivity() }
-        binding.toThirdButton.setOnClickListener { toThirdActivity() }
+        binding.bnToFirst.setOnClickListener { toFirstActivity() }
+        binding.bnToThird.setOnClickListener { toThirdActivity() }
 
         val bottom: BottomNavigationView = binding.bottomNav
         bottom.setOnItemSelectedListener { item ->

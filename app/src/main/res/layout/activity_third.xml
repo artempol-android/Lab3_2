@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityThird">
+    tools:context=".ActivityThird"
+    android:id="@+id/fragment3">
 
     <TextView
         android:id="@+id/textView1"
@@ -17,21 +18,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/to_second_button"
+        android:id="@+id/bnToSecond"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/to_second"
+        android:text="@string/title_to_second"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/to_first_button2"
-        app:layout_constraintStart_toStartOf="@+id/to_first_button2"
-        app:layout_constraintTop_toBottomOf="@+id/to_first_button2"
+        app:layout_constraintEnd_toEndOf="@+id/bnToFirst"
+        app:layout_constraintStart_toStartOf="@+id/bnToFirst"
+        app:layout_constraintTop_toBottomOf="@+id/bnToFirst"
         app:layout_constraintVertical_bias="0.08" />
 
     <Button
-        android:id="@+id/to_first_button2"
+        android:id="@+id/bnToFirst"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/to_first"
+        android:text="@string/title_to_first"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView1"
         app:layout_constraintStart_toStartOf="@+id/textView1"
