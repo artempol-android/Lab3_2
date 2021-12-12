@@ -11,13 +11,15 @@
         android:theme="@style/Theme.Lab3_Activity1">
         <activity
             android:name=".ActivityAbout"
-            android:exported="true" />
+            android:exported="true"/>
         <activity
             android:name=".ActivityThird"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".ActivitySecond"/>
         <activity
             android:name=".ActivitySecond"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

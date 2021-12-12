@@ -20,6 +20,8 @@ class ActivitySecond : AppCompatActivity() {
         binding.bnToFirst.setOnClickListener { toFirstActivity() }
         binding.bnToThird.setOnClickListener { toThirdActivity() }
 
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
         val bottom: BottomNavigationView = binding.bottomNav
         bottom.setOnItemSelectedListener { item ->
             if (item.itemId == R.id.item_about_activity)
@@ -42,6 +44,11 @@ class ActivitySecond : AppCompatActivity() {
          if (requestCode == THIRD_ACTIVITY_CODE && resultCode == Activity.RESULT_OK) {
              finish()
          }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     companion object {

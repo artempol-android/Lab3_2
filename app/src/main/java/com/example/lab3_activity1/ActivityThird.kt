@@ -20,6 +20,8 @@ class ActivityThird : AppCompatActivity() {
         binding.bnToSecond.setOnClickListener { toSecondActivity() }
         binding.bnToFirst.setOnClickListener { toFirstActivity() }
 
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
         val bottom: BottomNavigationView = binding.bottomNav
         bottom.setOnItemSelectedListener { item ->
             if (item.itemId == R.id.item_about_activity)
@@ -36,5 +38,10 @@ class ActivityThird : AppCompatActivity() {
         val intent = Intent()
         setResult(Activity.RESULT_OK, intent)
         finish()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

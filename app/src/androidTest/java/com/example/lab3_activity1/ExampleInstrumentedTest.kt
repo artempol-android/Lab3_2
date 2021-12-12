@@ -146,6 +146,7 @@ class NavigationTest {
         assertTrue(mainRule.scenario.state == Lifecycle.State.DESTROYED)
     }
 
+
     /*
       ==============================================================================================
       Проверяем открывается ли AboutActivity из каждого фрагмента, а затем провереям
@@ -436,6 +437,74 @@ class NavigationTest {
 
 /*
   ==============================================================================
+  UPDATED
+  Проверяем глубину backStack используя Up Button`a
+  ===============================================================================
+*/
+
+    @Test
+    fun fr1_fr2_fr3_about_up_up_up() {
+        launchActivity<MainActivity>()
+
+        onView(withId(R.id.bnToSecond)).perform(click())
+        onView(withId(R.id.bnToThird)).perform(click())
+
+        checkAboutViaBottomNav()
+        upButton()
+        onView(withId(R.id.fragment3)).check(matches(isDisplayed()))
+
+        upButton()
+        onView(withId(R.id.fragment2)).check(matches(isDisplayed()))
+
+        upButton()
+        onView(withId(R.id.fragment1)).check(matches(isDisplayed()))
+
+        pressBackUnconditionally()
+        assertTrue(mainRule.scenario.state == Lifecycle.State.DESTROYED)
+
+    }
+
+    @Test
+    fun fr1_fr2_about_up_up() {
+        launchActivity<MainActivity>()
+
+        onView(withId(R.id.bnToSecond)).perform(click())
+
+        checkAboutViaBottomNav()
+        upButton()
+        onView(withId(R.id.fragment2)).check(matches(isDisplayed()))
+
+        upButton()
+        onView(withId(R.id.fragment1)).check(matches(isDisplayed()))
+
+        pressBackUnconditionally()
+        assertTrue(mainRule.scenario.state == Lifecycle.State.DESTROYED)
+
+    }
+
+    @Test
+    fun fr1_fr2_about_up_fr3_up_up() {
+        launchActivity<MainActivity>()
+
+        onView(withId(R.id.bnToSecond)).perform(click())
+
+        checkAboutViaBottomNav()
+        upButton()
+        onView(withId(R.id.fragment2)).check(matches(isDisplayed()))
+
+        onView(withId(R.id.bnToThird)).perform(click())
+        onView(withId(R.id.fragment3)).check(matches(isDisplayed()))
+
+        upButton()
+        upButton()
+
+        pressBackUnconditionally()
+        assertTrue(mainRule.scenario.state == Lifecycle.State.DESTROYED)
+
+    }
+
+/*
+  ==============================================================================
   Проверяем как смена ориентации сказывается на отображении фрагментов и кнопок,
   а также какой контент отображается в кнопках
   ===============================================================================
@@ -443,18 +512,14 @@ class NavigationTest {
 
     private fun makeLandScapeOrientation(activityScenario: ActivityScenario<MainActivity>) {
         activityScenario.onActivity { activity ->
-            activity.setRequestedOrientation(
-                ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-            )
+            activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         }
         Thread.sleep(1000)
     }
 
     private fun makePortraitOrientation(activityScenario: ActivityScenario<MainActivity>) {
         mainRule.scenario.onActivity { activity ->
-            activity.setRequestedOrientation(
-                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-            )
+            activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         }
         Thread.sleep(1000)
     }
@@ -686,4 +751,7 @@ class NavigationTest {
         checkButton(R.id.bnToFirst, R.string.title_to_first)
         checkButton(R.id.bnToThird, R.string.title_to_third)
     }
+
+
+
 }
